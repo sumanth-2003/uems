@@ -5,6 +5,11 @@ const Header = ({role, setRole}) => {
 useEffect(()=>{
   console.log(role, "From header")
 }, [])
+const Logout=()=>{
+setRole(0)
+localStorage.setItem("role",0)
+
+}
   return (
     <div>
         <section className="row1 bg-lg mb-2">
@@ -31,9 +36,14 @@ useEffect(()=>{
                 { (role==2) && <li className="nav-item me-5">
                   <NavLink to="/report" className="nav-link">Report</NavLink>
                   </li> }
+                  { (role==0) ?
                   <li className="nav-item me-5">
                   <NavLink to="/login" className="nav-link" >Login</NavLink>
+                  </li>:
+                  <li className="nav-item me-5">
+                  <NavLink to="/login" className="nav-link" onClick={Logout} >Logout</NavLink>
                   </li>
+}
                 </ul>
               </div>
             </div>

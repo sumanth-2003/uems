@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useEffect } from 'react'
 const Login = ({ role, setRole }) => {
 
+	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
     const navigate = useNavigate()
 
     const [Post, setPost] = useState({
@@ -30,7 +31,7 @@ const Login = ({ role, setRole }) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        axios.post('/api/login', Post).then(async (res) => {
+        axios.post(BACKEND_URL+'/api/login', Post).then(async (res) => {
             console.log(res.data.message)
             setRole(res.data.role)
             localStorage.setItem("role", res.data.role)

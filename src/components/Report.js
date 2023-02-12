@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import PDF from './PDF'
 const Report = () => {
+	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
   const [Data, setData] = useState([])
   const fetchdata = async () => {
-    let res = await axios.get('/api/schedule');
+    let res = await axios.get(BACKEND_URL+'/api/schedule');
     let resdata = await res.data;
     setData(resdata)
     // console.log(Data)

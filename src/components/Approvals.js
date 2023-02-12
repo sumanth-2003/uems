@@ -8,13 +8,14 @@ import { Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState } from 'react'
 const Approvals = () => {
+	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
 	const [Data, setData] = useState([])
 	const clickHandler = (event, e, i) => {
 		let permission = "Decline";
 		if (event.target.name == "Accept") {
 			permission = "Accept"
 		}
-		axios.put('/api/approval', {
+		axios.put(BACKEND_URL+'/api/approval', {
 			id: e._id,
 			permission: permission
 		}).then((res) => { console.log(res) }).catch((err) => { console.log(err) })
@@ -25,7 +26,7 @@ const Approvals = () => {
 		
 	}
 	const fetchdata = async () => {
-		let res = await axios.get('/api/schedule');
+		let res = await axios.get(BACKEND_URL+'/api/schedule');
 		let resdata = await res.data;
 
 		// console.log(resdata)

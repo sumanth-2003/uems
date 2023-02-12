@@ -5,6 +5,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 const Schedule_event = () => {
+	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
   const navigate=useNavigate();
   const [Data,setData]=useState({name:"",type:"",description:"",date:"",time:"",venue:"",eattendes:"",item1:0,item2:0,item3:0,permission:"null"})
   const [step, setStep] = useState(1)
@@ -16,7 +17,7 @@ const Schedule_event = () => {
   const submitHandler=(e)=>{
     e.preventDefault();
     // console.log(Data);
-    axios.post('/api/schedule',Data).then(async (res)=>{
+    axios.post(BACKEND_URL+'/api/schedule',Data).then(async (res)=>{
     console.log(Data);
     await alert("request send sucessfully!!")
       navigate('/');

@@ -5,10 +5,11 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from 'react'
 const Events = () => {
+	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
   const [Data,setData] =useState([])
   useEffect( () =>{
  const fetchdata=async ()=>{
-    let res=await axios.get('/api/schedule');
+    let res=await axios.get(BACKEND_URL+'/api/schedule');
     let  resdata=await res.data;
 
 // console.log(resdata)
