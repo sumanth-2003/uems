@@ -3,6 +3,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express();
+const jwt=require('jsonwebtoken');
+const JWT_SECRET = "thisissecret";
 dotenv.config({path : './config.env'})
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -102,11 +104,13 @@ app.post('/api/login',async (req, res) => {
         if(exist.password!=req.body.password){
             return res.status(200).json({message:"wrong password"});
         }
-         res.json({
+        let token = jwt.sign({ _id: exist._id }, JWT_SECRET);
+        return res.json({
             status:200,
             message:"user found",
             found:true,
-            role:exist.role
+            role:exist.role,
+            token:token
         })
     }
     catch (err) {
