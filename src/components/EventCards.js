@@ -5,7 +5,7 @@ const EventCards = (props) => {
 
       <div className="card">
         <div className="card-body">
-          <h5 className="card-title">Event-{props.jo.name}</h5>
+          <h5 className="card-title">{props.jo.name}</h5>
           <p className="card-text">{props.jo.description}</p>
           {/* Button trigger modal */}
           <button className="btn btn-primary ms-4" data-bs-toggle="modal" data-bs-target={"#exampleModal"+props.i}>Details</button>
