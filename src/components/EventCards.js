@@ -6,7 +6,7 @@ const EventCards = (props) => {
       <div className="card">
         <div className="card-body">
           <h5 className="card-title">Event-{props.jo.name}</h5>
-          <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <p className="card-text">{props.jo.description}</p>
           {/* Button trigger modal */}
           <button className="btn btn-primary ms-4" data-bs-toggle="modal" data-bs-target={"#exampleModal"+props.i}>Details</button>
           {/* Modal */}
@@ -14,15 +14,15 @@ const EventCards = (props) => {
             <div className="modal-dialog modal-dialog-centered ">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h1 className="modal-title fs-5" id={"exampleModalLabel"+props.i}>Modal title</h1>
+                  <h1 className="modal-title fs-5" id={"exampleModalLabel"+props.i}>{props.jo.name}</h1>
                   <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                 </div>
-                <div className="modal-body">
+                <div className="modal-body center">
 
-                  <p>{props.jo.type}</p>
-                  <p>{props.jo.time}</p>
-                  <p>{props.jo.venue}</p>
-                  <p>{props.jo.eattendes}</p>
+                  <p> Type : <b>{props.jo.type}</b></p>
+                  <p>Time : <b>{props.jo.time}</b></p>
+                  <p>Venue :<b>{props.jo.venue}</b></p>
+                  <p>Expected-attendes : <b>{props.jo.eattendes}</b></p>
                 </div>
               </div>
             </div>

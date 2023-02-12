@@ -5,23 +5,23 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from 'react'
 const Events = () => {
-	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
-  const [Data,setData] =useState([])
-  useEffect( () =>{
- const fetchdata=async ()=>{
-    let res=await axios.get(BACKEND_URL+'/api/schedule');
-    let  resdata=await res.data;
+  const BACKEND_URL = process.env.NODE_ENV == "development" ? "" : "https://uems-21.onrender.com"
+  const [Data, setData] = useState([])
+  useEffect(() => {
+    const fetchdata = async () => {
+      let res = await axios.get(BACKEND_URL + '/api/schedule');
+      let resdata = await res.data;
 
-// console.log(resdata)
-setData(resdata)
-// console.log(Data)
- 
-}
-fetchdata();
-}, []);
+      // console.log(resdata)
+      setData(resdata)
+      // console.log(Data)
+
+    }
+    fetchdata();
+  }, []);
   return (
-<div>
-<div>
+    <div>
+      <div>
         <div className="container">
           <ul className="nav nav-tabs" id="myTab" role="tablist">
             <li className="nav-item" role="presentation">
@@ -35,28 +35,28 @@ fetchdata();
             </li>
           </ul>
           <div className="collapse show" id="ex1">
-          {
-            Data.map((e,i)=>{
-           if(e.permission==="Accept"){   
-            return(<EventCards jo={e} key={i} i={i}/>)
-          }
-            })
-        }
+            {
+              Data.map((e, i) => {
+                if (e.permission === "Accept") {
+                  return (<EventCards jo={e} key={i} i={i} />)
+                }
+              })
+            }
           </div>
           <div className="collapse" id="ex2">
-          {/* <EventCards num="4"/>
+            {/* <EventCards num="4"/>
           <EventCards num="5"/>
           <EventCards num="6"/>   */}
           </div>
           <div className="collapse" id="ex3">
-          {/* <EventCards num="7"/>
+            {/* <EventCards num="7"/>
           <EventCards num="8"/>
           <EventCards num="9"/>  */}
           </div>
         </div>
-<Footer/>
-</div>
-</div>
+        <Footer />
+      </div>
+    </div>
   )
 }
 

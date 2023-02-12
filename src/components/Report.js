@@ -99,10 +99,10 @@ const Report = () => {
                                 </div>
                                 <div className="modal-body">
 
-                                  <p>{e.type}</p>
-                                  <p>{e.time}</p>
-                                  <p>{e.venue}</p>
-                                  <p>{e.eattendes}</p>
+                                  <p> Type : <b>{e.type}</b></p>
+                                  <p>Time : <b>{e.time}</b></p>
+                                  <p>Venue :<b>{e.venue}</b></p>
+                                  <p>Expected-attendes : <b>{e.eattendes}</b></p>
                                 </div>
                               </div>
                             </div>

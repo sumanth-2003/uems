@@ -70,7 +70,7 @@ const Approvals = () => {
 							Data.map((e, i) => {
 								if (e.permission === "Accept") {
 									return (
-										<EventCards jo={e} key={i}/>
+										<EventCards jo={e} key={i}  i={i}/>
 									)
 								}
 							})
@@ -81,7 +81,7 @@ const Approvals = () => {
 							Data.map((e, i) => {
 								if (e.permission === "Decline") {
 									return (
-										<EventCards jo={e} key={i}/>)
+										<EventCards jo={e} key={i} i={i}/>)
 								}
 							})
 						}
