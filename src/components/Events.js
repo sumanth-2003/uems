@@ -38,7 +38,7 @@ fetchdata();
           {
             Data.map((e,i)=>{
            if(e.permission==="Accept"){   
-            return(<EventCards jo={e} key={i}/>)
+            return(<EventCards jo={e} key={i} i={i}/>)
           }
             })
         }

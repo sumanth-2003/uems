@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import PDF from './PDF'
 const Report = () => {
-	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
+  const BACKEND_URL = process.env.NODE_ENV == "development" ? "" : "https://uems-21.onrender.com"
   const [Data, setData] = useState([])
   const fetchdata = async () => {
-    let res = await axios.get(BACKEND_URL+'/api/schedule');
+    let res = await axios.get(BACKEND_URL + '/api/schedule');
     let resdata = await res.data;
     setData(resdata)
     // console.log(Data)
@@ -88,7 +88,25 @@ const Report = () => {
                         <td>{e.type}</td>
                         <td className="desc">{e.description}</td>
                         <td>
-                          <button className="btn btn-primary m-1"><i className="fa fa-info-circle" /> Details</button>
+                          <button className="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target={"#exampleModal" + i}>Details</button>
+                          {/* Modal */}
+                          <div className="modal fade" id={"exampleModal" + i} tabIndex={-1} aria-labelledby={"exampleModalLabel" + i} aria-hidden="true">
+                            <div className="modal-dialog modal-dialog-centered ">
+                              <div className="modal-content">
+                                <div className="modal-header">
+                                  <h1 className="modal-title fs-5" id={"exampleModalLabel" + i}>Modal title</h1>
+                                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                                </div>
+                                <div className="modal-body">
+
+                                  <p>{e.type}</p>
+                                  <p>{e.time}</p>
+                                  <p>{e.venue}</p>
+                                  <p>{e.eattendes}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                           <button className="btn btn-success m-1" onClick={() => handleDownload(i)}><i className="fa fa-download" /> Download</button>
                         </td>
                       </tr>
