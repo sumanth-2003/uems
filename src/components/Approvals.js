@@ -1,15 +1,29 @@
 import React from 'react'
 import Footer from './Footer'
-import Headers from './Header'
 import EventCards from './EventCards'
 import ApprovalCard from './ApprovalCard'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState } from 'react'
-const Approvals = () => {
-	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
+const Approvals = ({token}) => {
+	const fetchdata = async () => {
+		let res = await axios.get(BACKEND_URL+'/api/schedule');
+		let resdata = await res.data;
+
+		// console.log(resdata)
+		setData(resdata)
+		// console.log(Data)
+
+	}
 	const [Data, setData] = useState([])
+	useEffect(() => {
+		fetchdata();
+	}, []);
+	if(!token){
+		return <Navigate to={'/'}/>
+	}
+	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
 	const clickHandler = (event, e, i) => {
 		let permission = "Decline";
 		if (event.target.name == "Accept") {
@@ -25,18 +39,6 @@ const Approvals = () => {
 		setData(newData)
 		
 	}
-	const fetchdata = async () => {
-		let res = await axios.get(BACKEND_URL+'/api/schedule');
-		let resdata = await res.data;
-
-		// console.log(resdata)
-		setData(resdata)
-		// console.log(Data)
-
-	}
-	useEffect(() => {
-		fetchdata();
-	}, []);
 	return (
 		<div>
 			<div>

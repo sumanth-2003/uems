@@ -3,7 +3,7 @@ import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect } from 'react'
-const Login = ({ role, setRole }) => {
+const Login = ({ role, setRole,token,setToken }) => {
 
 	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
     const navigate = useNavigate()
@@ -35,6 +35,7 @@ const Login = ({ role, setRole }) => {
             console.log(res.data.message)
             setRole(res.data.role)
             localStorage.setItem("role", res.data.role)
+            setToken(res.data.token)
             console.log(res.data.role)
             if (res.data.found) {
                 navigate('/events')

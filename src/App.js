@@ -10,7 +10,7 @@ import Error from './components/Error'
 import Header from './components/Header';
 const App = () => {
   const [role, setRole] = useState(localStorage.getItem("role")||0)
-  
+  const[token,setToken]=useState("")
   useEffect(()=> {
     let r =localStorage.getItem("role") || 0;
     console.log(r, "Ji")
@@ -29,10 +29,10 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/events' element={<Events />} />
-          <Route path='/approvals' element={<Approvals />} />
-          <Route path='/report' element={<Report />} />
-          <Route path='/schedule_event' element={<Schedule_event />} />
-          <Route path='/login' element={<Login role={role} setRole={setRole} />} />
+          <Route path='/approvals' element={<Approvals token={token} />} />
+          <Route path='/report' element={<Report token={token} />} />
+          <Route path='/schedule_event' element={<Schedule_event token={token}/>} />
+          <Route path='/login' element={<Login role={role} setRole={setRole} token={token} setToken={setToken} />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>

@@ -4,7 +4,8 @@ import Footer from './Footer'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import PDF from './PDF'
-const Report = () => {
+import { Navigate } from 'react-router-dom';
+const Report = ({token}) => {
   const BACKEND_URL = process.env.NODE_ENV == "development" ? "" : "https://uems-21.onrender.com"
   const [Data, setData] = useState([])
   const fetchdata = async () => {
@@ -16,7 +17,9 @@ const Report = () => {
   useEffect(() => {
     fetchdata();
   }, []);
-
+	if(!token){
+		return <Navigate to={'/'}/>
+	}
   const handleDownload = async (i) => {
     const newWindow = window.open(
       "",
