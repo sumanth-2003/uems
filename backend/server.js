@@ -1,5 +1,5 @@
 const dotenv = require('dotenv')
-dotenv.config({ path: './config.env' })
+dotenv.config()
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -10,7 +10,8 @@ const router = express.Router();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-mongoose.connect(process.env.MONGO_URL).catch((err) => {
+console.log(`${process.env.MONGO_URL}`)
+mongoose.connect(`${process.env.MONGO_URL}`).catch((err) => {
     console.log(err);
 })
 
@@ -123,5 +124,5 @@ app.get('/api/schedule',schedule)
 app.put('/api/approval', approval)
 
 app.listen(5000, () => {
-    console.log("server runnung at http://localhost:3001/")
+    console.log("server runnung at http://localhost:5000/")
 })

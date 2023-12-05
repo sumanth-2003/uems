@@ -4,10 +4,12 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate,Navigate } from 'react-router-dom'
 const Schedule_event = ({token}) => {
+  
   const navigate=useNavigate();
   const [Data,setData]=useState({name:"",type:"",description:"",date:"",time:"",venue:"",eattendes:"",item1:0,item2:0,item3:0,permission:"null"})
   const [step, setStep] = useState(1)
 	if(!token){
+    console.log("Token not found")
 		return <Navigate to={'/'}/>
 	}
 	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
@@ -97,38 +99,125 @@ const Schedule_event = ({token}) => {
             <button type="button" className="btn btn-primary mt-3" onClick={()=>setStep(2)}>Previous</button>
             <button type="button" className="btn btn-primary mt-3 ms-5" onClick={()=>setStep(4)}>Next</button>
           </div>}
-          {step===4 && <div className="container" id="ex4">
-            <h3>PREVIEW</h3>
-            <div className="d-flex justify-content-between">
-              <div className="container border" style={{minHeight: '7cm', maxWidth: '33%'}}>
-                <h3>EVENT DETAILS</h3>
-                <ul>
-                  <li><h4>Name : </h4>{Data.name}</li>
-                  <li><h4>Type : </h4>{Data.type}</li>
-                  <li><h4>Description : </h4>{Data.description}</li>
-                </ul>
-              </div>
-              <div className="container border" style={{minHeight: '7cm', maxWidth: '33%'}}>
-                <h3>SLOT DETAILS</h3>
-                <ul>
-                <li><h4>Date : </h4>{Data.date}</li>
-                <li><h4>Time : </h4>{Data.time}</li>
-                <li><h4>Venue : </h4>{Data.venue}</li>
-                <li><h4>Estimated Atendes : </h4>{Data.eattendes}</li>
-                </ul>
-              </div>
-              <div className="container border" style={{minHeight: '7cm', maxWidth: '33%'}}>
-                <h3>REFRESHMENT'S</h3>
-                <ul>
-                <li><h4>item-1 : </h4>{Data.item1}</li>
-                <li><h4>item-2 : </h4>{Data.item2}</li>
-                <li><h4>item-3 : </h4>{Data.item3}</li>
-                </ul>
-              </div>
-            </div>
-            <button type="button" className="btn btn-primary mt-3" onClick={()=>setStep(3)}>Previous</button>
-            <button type="button" className="btn btn-primary mt-3 ms-5" onClick={submitHandler}>Request</button> 
-          </div>}
+
+          {step === 4 && (
+  <div className="container" id="ex4">
+    <h3>PREVIEW</h3>
+    <div className="d-flex justify-content-between">
+      <div className="container border" style={{ minHeight: '7cm', maxWidth: '33%' }}>
+        <h3>EVENT DETAILS</h3>
+        <ul>
+          <li>
+            <h4>Name :</h4>
+            <input
+              type="text"
+              value={Data.name}
+              onChange={changeHandler}
+              name="name"
+            />
+          </li>
+          <li>
+            <h4>Type :</h4>
+            <input
+              type="text"
+              value={Data.type}
+              onChange={changeHandler}
+              name="type"
+            />
+          </li>
+          <li>
+            <h4>Description :</h4>
+            <input
+              type="text"
+              value={Data.description}
+              onChange={changeHandler}
+              name="description"
+            />
+          </li>
+        </ul>
+      </div>
+      <div className="container border" style={{ minHeight: '7cm', maxWidth: '33%' }}>
+        <h3>SLOT DETAILS</h3>
+        <ul>
+          <li>
+            <h4>Date :</h4>
+            <input
+              type="date"
+              value={Data.date}
+              onChange={changeHandler}
+              name="date"
+            />
+          </li>
+          <li>
+            <h4>Time :</h4>
+            <input
+              type="time"
+              value={Data.time}
+              onChange={changeHandler}
+              name="time"
+            />
+          </li>
+          <li>
+            <h4>Venue :</h4>
+            <input
+              type="text"
+              value={Data.venue}
+              onChange={changeHandler}
+              name="venue"
+            />
+          </li>
+          <li>
+            <h4>Estimated Attendees :</h4>
+            <input
+              type="number"
+              value={Data.eattendes}
+              onChange={changeHandler}
+              name="eattendes"
+            />
+          </li>
+        </ul>
+      </div>
+      <div className="container border" style={{ minHeight: '7cm', maxWidth: '33%' }}>
+        <h3>REFRESHMENTS</h3>
+        <ul>
+          <li>
+            <h4>Item 1 :</h4>
+            <input
+              type="number"
+              value={Data.item1}
+              onChange={changeHandler}
+              name="item1"
+            />
+          </li>
+          <li>
+            <h4>Item 2 :</h4>
+            <input
+              type="number"
+              value={Data.item2}
+              onChange={changeHandler}
+              name="item2"
+            />
+          </li>
+          <li>
+            <h4>Item 3 :</h4>
+            <input
+              type="number"
+              value={Data.item3}
+              onChange={changeHandler}
+              name="item3"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button type="button" className="btn btn-primary mt-3" onClick={() => setStep(3)}>
+      Previous
+    </button>
+    <button type="button" className="btn btn-primary mt-3 ms-5" onClick={submitHandler}>
+      Request
+    </button>
+  </div>
+)}
         </div>
 <Footer/>
 </div>

@@ -6,9 +6,15 @@ import axios from 'axios'
 import { Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState } from 'react'
-const Approvals = ({token}) => {
+
+const BACKEND_URL = process.env.NODE_ENV == "development" ? "" : "https://uems-21.onrender.com"
+const Approvals = ({ token,role }) => {
+
+
+	const [Data, setData] = useState([])
+
 	const fetchdata = async () => {
-		let res = await axios.get(BACKEND_URL+'/api/schedule');
+		let res = await axios.get(BACKEND_URL + '/api/schedule');
 		let resdata = await res.data;
 
 		// console.log(resdata)
@@ -16,29 +22,36 @@ const Approvals = ({token}) => {
 		// console.log(Data)
 
 	}
-	const [Data, setData] = useState([])
 	useEffect(() => {
 		fetchdata();
 	}, []);
-	if(!token){
-		return <Navigate to={'/'}/>
+	if (!token || role!=2) {
+		return <Navigate to={'/'} />
 	}
-	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
+
+
+
 	const clickHandler = (event, e, i) => {
-		let permission = "Decline";
+		let permission = 'null'
+		if (event.target.name == "Decline") {
+			permission = "Decline"
+		}
 		if (event.target.name == "Accept") {
 			permission = "Accept"
 		}
-		axios.put(BACKEND_URL+'/api/approval', {
+
+
+		axios.put(BACKEND_URL + '/api/approval', {
 			id: e._id,
 			permission: permission
 		}).then((res) => { console.log(res) }).catch((err) => { console.log(err) })
-		
+
 		let newData = [...Data]
 		newData[i].permission = permission
 		setData(newData)
-		
 	}
+
+
 	return (
 		<div>
 			<div>
@@ -60,7 +73,7 @@ const Approvals = ({token}) => {
 							Data.map((e, i) => {
 								if (e.permission === "null") {
 									return (
-										<ApprovalCard clickHandler={(event)=>clickHandler(event, e, i)} jo={e} key={i} />
+										<ApprovalCard clickHandler={(event) => clickHandler(event, e, i)} jo={e} key={i} />
 									)
 								}
 							})
@@ -72,7 +85,7 @@ const Approvals = ({token}) => {
 							Data.map((e, i) => {
 								if (e.permission === "Accept") {
 									return (
-										<EventCards jo={e} key={i}  i={i}/>
+										<EventCards jo={e} key={i} i={i} />
 									)
 								}
 							})
@@ -83,7 +96,7 @@ const Approvals = ({token}) => {
 							Data.map((e, i) => {
 								if (e.permission === "Decline") {
 									return (
-										<EventCards jo={e} key={i} i={i}/>)
+										<EventCards jo={e} key={i} i={i} />)
 								}
 							})
 						}

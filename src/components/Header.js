@@ -1,14 +1,14 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
 import { useEffect } from 'react'
-const Header = ({role, setRole}) => {
+const Header = ({role, setRole,token,setToken}) => {
 useEffect(()=>{
   console.log(role, "From header")
 }, [])
 const Logout=()=>{
 setRole(0)
 localStorage.setItem("role",0)
-
+localStorage.setItem("token","")
 }
   return (
     <div>
@@ -27,13 +27,13 @@ localStorage.setItem("role",0)
                   <li className="nav-item me-5">
                   <NavLink to="/events" className="nav-link">Events</NavLink>
                   </li>
-                 { ((role==1)||(role==2)) && <li className="nav-item me-5">
+                 { (((role==1)||(role==2)) && token!="") && <li className="nav-item me-5">
                   <NavLink to="/schedule_event" className="nav-link">Shedule Event</NavLink>
                   </li>}
-                 { (role==2) && <li className="nav-item me-5">
+                 { (role==2 && token!="") && <li className="nav-item me-5">
                   <NavLink to="/approvals" className="nav-link">Approvals</NavLink>
                   </li>}
-                { (role==2) && <li className="nav-item me-5">
+                { (role==2 && token!="") && <li className="nav-item me-5">
                   <NavLink to="/report" className="nav-link">Report</NavLink>
                   </li> }
                   { (role==0) ?

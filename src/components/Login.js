@@ -22,11 +22,13 @@ const Login = ({ role, setRole,token,setToken }) => {
         })
     }
 
-    useEffect(() => {
-        let r = localStorage.getItem("role") || 0
-        console.log(r, "From login");
-        setRole(r);
-    }, []);
+    // useEffect(() => {
+    //     let r = localStorage.getItem("role") || 0
+    //     let k=localStorage.getItem("token")||""
+    //     console.log(r,k, "From login");
+    //     setRole(r);
+    //     setToken(k);
+    // }, []);
 
 
     const handleClick = (e) => {
@@ -34,8 +36,9 @@ const Login = ({ role, setRole,token,setToken }) => {
         axios.post(BACKEND_URL+'/api/login', Post).then(async (res) => {
             console.log(res.data.message)
             setRole(res.data.role)
-            localStorage.setItem("role", res.data.role)
             setToken(res.data.token)
+            localStorage.setItem("role", res.data.role)
+            localStorage.setItem("token",res.data.token)
             console.log(res.data.role)
             if (res.data.found) {
                 navigate('/events')

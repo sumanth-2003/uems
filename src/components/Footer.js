@@ -2,7 +2,7 @@ import React from 'react'
 
 const footer = () => {
   return (
-    <div>
+    <div className='mt-5'>
       <section id="footer">
         <section id="banner">
           <div className="container-fluid" id="banner-container">
