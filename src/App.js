@@ -8,6 +8,7 @@ import Schedule_event from './components/Schedule_event';
 import Login from './components/Login';
 import Error from './components/Error'
 import Header from './components/Header';
+import Timetable from './components/Timetable';
 const App = () => {
   const [role, setRole] = useState(localStorage.getItem("role")||0)
   const[token,setToken]=useState(localStorage.getItem("token")||"")
@@ -35,6 +36,7 @@ const App = () => {
           <Route path='/report' element={<Report token={token} />} />
           <Route path='/schedule_event' element={<Schedule_event token={token}/>} />
           <Route path='/login' element={<Login role={role} setRole={setRole} token={token} setToken={setToken} />} />
+          <Route path='/timetable' element={<Timetable/>}/>
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>
