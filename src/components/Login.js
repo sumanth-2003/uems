@@ -3,9 +3,9 @@ import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect } from 'react'
-const Login = ({ role, setRole,token,setToken }) => {
+const Login = ({ role, setRole, token, setToken }) => {
 
-	const BACKEND_URL = process.env.NODE_ENV=="development"?"":"https://uems-21.onrender.com"
+    const BACKEND_URL = process.env.NODE_ENV == "development" ? "" : "https://uems-21.onrender.com"
     const navigate = useNavigate()
 
     const [Post, setPost] = useState({
@@ -14,6 +14,7 @@ const Login = ({ role, setRole,token,setToken }) => {
     })
     const changeHandler = (e) => {
         const { name, value } = e.target;
+        console.log(value);
         setPost((prev) => {
             return {
                 ...prev,
@@ -33,12 +34,12 @@ const Login = ({ role, setRole,token,setToken }) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        axios.post(BACKEND_URL+'/api/login', Post).then(async (res) => {
+        axios.post(BACKEND_URL + '/api/login', Post).then(async (res) => {
             console.log(res.data.message)
             setRole(res.data.role)
             setToken(res.data.token)
             localStorage.setItem("role", res.data.role)
-            localStorage.setItem("token",res.data.token)
+            localStorage.setItem("token", res.data.token)
             console.log(res.data.role)
             if (res.data.found) {
                 navigate('/events')

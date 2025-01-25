@@ -4,7 +4,7 @@ import Headers from './Header'
 const Home = () => {
   return (
     <div>
-            <div>
+      <div>
         <div className="container">
           <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="false">
             <div className="carousel-indicators">
@@ -14,14 +14,14 @@ const Home = () => {
             </div>
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <img src="https://source.unsplash.com/random/900x400/?event" className="d-block w-100" alt="..." />
+                <img src="https://source.unsplash.com/random/900x400" className="d-block w-100" alt="..." />
                 <div className="carousel-caption d-none d-md-block">
                   <h5>First slide label</h5>
                   <p>Some representative placeholder content for the first slide.</p>
                 </div>
               </div>
               <div className="carousel-item">
-                <img src="https://source.unsplash.com/random/900x400/?party" className="d-block w-100" alt="..." />
+                <img src="https://source.unsplash.com/random/900x400" className="d-block w-100" alt="..." />
                 <div className="carousel-caption d-none d-md-block">
                   <h5>Second slide label</h5>
                   <p>Some representative placeholder content for the second slide.</p>
@@ -49,8 +49,8 @@ const Home = () => {
           <h2 className="mt-2">About Us</h2>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, deserunt alias minus adipisci, totam ex exercitationem quaerat perferendis asperiores repellendus blanditiis maiores ullam quod esse facilis nobis in repellat omnis. Reprehenderit, ut ad eligendi, perferendis dolore harum repellat similique quaerat sint molestiae fuga dolor accusantium suscipit aliquid, dicta odit perspiciatis id amet nemo ratione vitae nam alias iure molestias. Amet sequi eos minus tempora libero quidem voluptate quia quisquam aliquam, nulla aperiam, atque possimus? Voluptatibus dolorum ut delectus provident odio mollitia nemo consectetur asperiores illum aliquam voluptatum eveniet minus praesentium repellendus dignissimos optio omnis, recusandae perferendis porro cumque non harum!
         </div>
-<Footer/>
- </div>
+        <Footer />
+      </div>
     </div>
   )
 }
